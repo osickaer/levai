@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% block content %}
+    <h1>Welcome to My App!</h1>
+    <p>This app allows you to upload a PDF file and add events from it to your Google Calendar.</p>
+    <a href="/login/">Login</a>
+{% endblock %}

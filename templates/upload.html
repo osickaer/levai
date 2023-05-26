@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% block content %}
+    <h1>Upload a PDF</h1>
+    <form id="upload-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.file.label_tag }} {{ form.file }}
+        {{ form.calendar_id.label_tag }} {{ form.calendar_id }}
+        <button type="submit">Upload</button>
+    </form>
+    <div id="loading-spinner" style="display: none;">
+        <img src="{% static 'Loading_icon.gif' %}" alt="Loading" style="width: 20%;">
+    </div>
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function() {
+            document.getElementById('loading-spinner').style.display = 'block';
+        });
+    </script>
+{% endblock %}
